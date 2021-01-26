@@ -5,8 +5,8 @@ enum Operator {
 }
 
 class ViewController: UIViewController {
-    @IBOutlet weak var doingLabel: UILabel!
-    @IBOutlet weak var resultLabel: UILabel!
+    @IBOutlet weak private var doingLabel: UILabel!
+    @IBOutlet weak private var resultLabel: UILabel!
     
     private var numbers: [Float] = []
     private var operators: [Operator] = []
@@ -120,35 +120,7 @@ class ViewController: UIViewController {
         }
     }
     
-    //MARK: - Arithmetic operators action
-    @IBAction private func addTouchUpInside(_ sender: Any) {
-        operatorString.append("+")
-    }
-    
-    @IBAction private func subTouchUpInside(_ sender: Any) {
-        operatorString.append("-")
-    }
-    
-    @IBAction private func mulTouchUpInside(_ sender: Any) {
-        operatorString.append("x")
-    }
-    
-    @IBAction private func divTouchUpInside(_ sender: Any) {
-        operatorString.append("/")
-    }
-    
-    @IBAction private func percentTouchUpInside(_ sender: Any) {
-        operatorString.append("%")
-    }
-    
-    @IBAction private func negativeTouchUpInside(_ sender: Any) {
-        operatorString.append("+/-")
-    }
-    
-    @IBAction private func dotTouchUpInside(_ sender: Any) {
-        operatorString.append(".")
-    }
-    
+    //MARK: - Equal Action
     @IBAction private func equalTouchUpInside(_ sender: Any) {
         isClear = true
         if index == 0 {
@@ -216,43 +188,14 @@ class ViewController: UIViewController {
         }
     }
     
-    //MARK: - Number action
-    @IBAction private func zeroTouchUpInside(_ sender: Any) {
-        numberString.append("0")
-    }
-    
-    @IBAction private func oneTouchUpInside(_ sender: Any) {
-        numberString.append("1")
-    }
-    
-    @IBAction private func twoTouchUpInside(_ sender: Any) {
-        numberString.append("2")
-    }
-    
-    @IBAction private func threeTouchUpInside(_ sender: Any) {
-        numberString.append("3")
-    }
-    
-    @IBAction private func fourTouchUpInside(_ sender: Any) {
-        numberString.append("4")
-    }
-    
-    @IBAction private func fiveTouchUpInside(_ sender: Any) {
-        numberString.append("5")
-    }
-    
-    @IBAction private func sixTouchUpInside(_ sender: Any) {
-        numberString.append("6")
-    }
-    
-    @IBAction private func sevenTouchUpInside(_ sender: Any) {
-        numberString.append("7")
-    }
-    @IBAction private func eightTouchUpInside(_ sender: Any) {
-        numberString.append("8")
-    }
-    
-    @IBAction private func nineTouchUpInside(_ sender: Any) {
-        numberString.append("9")
+    //MARK: - Number and Arthemetic operators action
+    @IBAction private func touchUpInside(_ sender: UIButton) {
+        let dataString: String = sender.title(for: .normal)!
+        let number: Int? = Int(dataString)
+        if number != nil {
+            numberString.append(dataString)
+        } else {
+            operatorString.append(dataString)
+        }
     }
 }
